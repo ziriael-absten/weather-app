@@ -41,3 +41,6 @@ li {
   position: relative;
   top: -20px;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
