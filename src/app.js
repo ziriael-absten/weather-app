@@ -3,7 +3,7 @@ function formatDate(timestamp) {
   let hours = date.getHours();
   let minutes = date.getMinutes();
   if (minutes < 10) {
-    (minutes = "0"), minutes;
+    minutes = "0" + minutes;
   }
   let days = [
     "Sunday",
@@ -39,10 +39,22 @@ function showTemperature(response) {
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 }
-let city = "New York";
-let apiKey = "c6b24904ab14ebc2fc4d82be19770cb4";
-let apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?q=" +
-  city +
-  "&appid=c6b24904ab14ebc2fc4d82be19770cb4&units=metric";
-axios.get(apiUrl).then(showTemperature);
+let city = "kyiv";
+
+function search(city) {
+  let apiKey = "c6b24904ab14ebc2fc4d82be19770cb4";
+  let apiUrl =
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
+    city +
+    "&appid=c6b24904ab14ebc2fc4d82be19770cb4&units=metric";
+  axios.get(apiUrl).then(showTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
