@@ -79,3 +79,5 @@ fahrenhLink.addEventListener("click", showFahrTemp);
 
 let celLink = document.querySelector("#cel-link");
 celLink.addEventListener("click", showCelTemp);
+
+search("Kyiv");
