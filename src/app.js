@@ -19,7 +19,8 @@ function formatDate(timestamp) {
 }
 function showTemperature(response) {
   let tempElement = document.querySelector("#temperature");
-  tempElement.innerHTML = Math.round(response.data.main.temp);
+  celTemp = response.data.main.temp;
+  tempElement.innerHTML = Math.round(celTemp);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.name;
   let descriptElement = document.querySelector("#description");
@@ -58,3 +59,23 @@ function handleSubmit(event) {
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+function showFahrTemp(event) {
+  event.preventDefault();
+  let fahrTemp = (celTemp * 9) / 5 + 32;
+  let tempElement = document.querySelector("#temperature");
+  tempElement.innerHTML = Math.round(fahrTemp);
+}
+
+function showCelTemp(event) {
+  event.preventDefault();
+  let tempElement = document.querySelector("#temperature");
+  tempElement.innerHTML = Math.round(celTemp);
+}
+let celTemp = "null";
+
+let fahrenhLink = document.querySelector("#fahrenh-link");
+fahrenhLink.addEventListener("click", showFahrTemp);
+
+let celLink = document.querySelector("#cel-link");
+celLink.addEventListener("click", showCelTemp);
